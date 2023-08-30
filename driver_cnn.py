@@ -112,6 +112,12 @@ def get_filename(dir_path):
 #Memory/CPU Usage Profiler 
 def main():
 
+    #---- Run configuration ----#
+    delay   = 0.5
+    batch   = 64
+    threads = 1
+    #---------------------------#
+
     if (len(sys.argv) != 2):
         print(f"USAGE ERROR: python3 {sys.argv[0]:s} <CNN_MODEL>")
         exit(-1)
@@ -120,8 +126,6 @@ def main():
     cnn_id     = -1
     cnn_name   = sys.argv[1]
 
-    delay = 0.5;
-    batch = 64
 
     if (cnn_name == "AlexNet" or cnn_name == "Alexnet" or cnn_name == "alexnet"):
         cnn_id = ALEXNET
@@ -145,7 +149,7 @@ def main():
 
 
     #Fix Number of Threads
-    tf.config.threading.set_intra_op_parallelism_threads(1)
+    tf.config.threading.set_intra_op_parallelism_threads(threads)
 
     x = Thread(target=profiling_function, args=(delay, log_file, memory_info, cpu_info))
     x.start()

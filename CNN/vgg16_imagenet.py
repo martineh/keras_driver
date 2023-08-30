@@ -82,7 +82,7 @@ def vgg16_imagenet(input_shape):
     maxPool = tf.keras.layers.MaxPooling2D((2, 2), strides=(2, 2))
     cnn.append([maxPool, cl.MAXPOOL])
     
-    conv = tf.keras.layers.Conv2D(128, (3, 3), strides=(1, 1), padding='same')
+    conv = tf.keras.layers.Conv2D(256, (3, 3), strides=(1, 1), padding='same')
     cnn.append([conv, cl.CONV])
 
     relu = tf.keras.layers.Activation('relu')
